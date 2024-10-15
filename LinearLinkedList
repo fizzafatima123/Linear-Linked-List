@@ -156,3 +156,27 @@ void LinkedList::deleteBefore(int targetValue)
 		}
 	}
 }
+void LinkedList::deleteAfter(int targetValue)
+{
+	// If the list is empty or has only one node, nothing to delete
+	if (head == nullptr || head->next == nullptr)
+	{
+		return;
+	}
+	Node* temp = head;
+
+
+	while (temp != nullptr && temp->data != targetValue)
+	{
+		temp = temp->next;
+	}
+
+	// If we found the targetValue and the node after it exists
+	if (temp != nullptr && temp->next != nullptr)
+	{
+		Node* nodeToDelete = temp->next; // Node after targetValue
+		temp->next = nodeToDelete->next; // Bypass the node to be deleted
+		delete nodeToDelete;             // Delete the node
+	}
+}
+
