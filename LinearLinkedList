@@ -179,4 +179,21 @@ void LinkedList::deleteAfter(int targetValue)
 		delete nodeToDelete;             // Delete the node
 	}
 }
+void LinkedList::reverse()
+{
+	Node* prev = nullptr;   // To store the previous node (initially set to null)
+	Node* current = head;   // Start from the head
+	Node* next = nullptr;   // To store the next node temporarily
 
+	// Traverse the list and reverse the direction of the next pointers
+	while (current != nullptr)
+	{
+		next = current->next;  // Store the next node
+		current->next = prev;  // Reverse the current node's pointer
+
+		prev = current;        // Move prev to this node
+		current = next;        // Move current to the next node (stored in next)
+	}
+
+	head = prev;  // Set the new head to the last node we processed
+}
